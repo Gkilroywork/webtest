@@ -1,104 +1,134 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Order Confirmation - Shop Shoes</title>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <script src="js/jquery.min.js"></script>
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-</head>
-<body>
-</script>
-</head>
-    <!---Second UTT from program 31538-->
-    <script type="text/javascript"> (function(a,b,c,d,e,f,g){e['ire_o']=c;e[c]=e[c]||function(){(e[c].a=e[c].a||[]).push(arguments)};f=d.createElement(b);g=d.getElementsByTagName(b)[0];f.async=1;f.src=a;g.parentNode.insertBefore(f,g);})('https://utt.impactcdn.com/A6017967-9b32-44cf-a4c7-1b76f8f0bfce65535.js','script','ire',document,window); </script>
-	
-<body>
-<!-- script for conversion tracking-->
-	<script type="text/javascript">
-        
-        alert("this worked! Impact payload received.");
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MZJ2955L');</script>
+    <!-- End Google Tag Manager -->
 
+       <!---Second UTT from program 31538-->
+   <script type="text/javascript"> (function(a,b,c,d,e,f,g){e['ire_o']=c;e[c]=e[c]||function(){(e[c].a=e[c].a||[]).push(arguments)};f=d.createElement(b);g=d.getElementsByTagName(b)[0];f.async=1;f.src=a;g.parentNode.insertBefore(f,g);})('https://utt.impactcdn.com/A6017967-9b32-44cf-a4c7-1b76f8f0bfce65535.js','script','ire',document,window); </script>
+  
+   <title>Order Confirmation - Shop Shoes</title>
+   <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+   <script src="js/jquery.min.js"></script>
+   <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+   <title>Thank You!</title>
+   <script>
+       // Capture the irclickid from URL parameters
+       function getQueryParam(param) {
+           let urlParams = new URLSearchParams(window.location.search);
+           return urlParams.get(param);
+       }
+
+       let irclickid = getQueryParam("irclickid");
+       if (irclickid) {
+           // Store in a cookie or send to GTM
+           document.cookie = "irclickid=" + irclickid + "; path=/";
+           window.dataLayer = window.dataLayer || [];
+           window.dataLayer.push({
+               'event': 'conversion',
+               'irclickid': irclickid
+           });
+       }
+   </script>
+</head>
+<body>
     
-		ire('trackConversion', 54048, {
-		  orderId: "1340",
-		  customProfileId: "TestUUID1GJK",
-		  customerId: "1123413",
-		  customerEmail: "B87A2BE9B52070D84D0F5A373FFB49C3440B2295",
-		  customerStatus: "New",
-		  currencyCode: "USD",
-		  orderPromoCode: "newshoeswhodis",
-		  orderDiscount: 15.00,
-		  items: [
-			{
-			  subTotal: 28.00,
-			  category: "Shoes",
-			  sku: "sku-392386",
-			  quantity: 2,
-			  name: "Long Shoes"
-			},
-			{
-			  subTotal: 99.00,
-			  category: "Shoes",
-			  sku: "sku-85634",
-			  quantity: 3,
-			  name: "Strong Shoes"
-			}
-		  ]
-		},
-		{
-		  verifySiteDefinitionMatch: true
-		});
-	  </script>
-	<!--Second UTT from program 31538-->
-	<script type="text/javascript"> ire('identify', {customerid: '' /*INSERT CUSTOMER ID*/, customeremail: '' /*INSERT SHA1 HASHED CUSTOMER EMAIL*/}); </script>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZJ2955L"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-    <div class="container">
-        <h2>Thank you for your order!</h2>
-        <p>Your order has been successfully placed.</p>
+   <h1>Thank You for Your Purchase!</h1>
+   <p>Your transaction was successful.</p>
 
-        <!-- Order Details -->
-        <h3>Order Details:</h3>
-        <table>
-            <tr>
-                <td><strong>Order ID:</strong></td>
-                <td>#1340</td>
-            </tr>
-            <tr>
-                <td><strong>Customer Name:</strong></td>
-                <td id="customer-name">John Doe</td>
-            </tr>
-            <tr>
-                <td><strong>Email:</strong></td>
-                <td id="customer-email">johndoe@example.com</td>
-            </tr>
-            <tr>
-                <td><strong>Total Amount:</strong></td>
-                <td id="order-total">$250.00</td>
-            </tr>
-        </table>
+   <!-- Order Details -->
+   <h3>Order Details:</h3>
+   <table>
+       <tr>
+           <td><strong>Order ID:</strong></td>
+           <td id="order-id">Loading...</td> 
+       </tr>
+       <tr>
+           <td><strong>Customer Name:</strong></td>
+           <td id="customer-name"> John Doe</td>
+       </tr>
+       <tr>
+           <td><strong>Email:</strong></td>
+           <td id="customer-email">johndoe@example.com</td>
+       </tr>
+       <tr>
+           <td><strong>Total Amount:</strong></td>
+           <td id="order-total">$250.00</td>
+       </tr>
+   </table>
 
-        <!-- Shipping Details -->
-        <h3>Shipping Information:</h3>
-        <p id="shipping-address">123 Main Street, New York, NY</p>
+   <script>
+       function generateOrderId() {
+           return "ORD-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
+       }
 
-        <div class="checkout-buttons">
-            <a href="index.html" class="button">Continue Shopping</a>
-            <a href="store.html" class="button">Go to Store</a>
-        </div>
-    </div>
+       let orderId = generateOrderId();
+       document.addEventListener("DOMContentLoaded", function() {
+           document.getElementById("order-id").innerText = orderId;
+       });
+   </script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Retrieve order details from localStorage
-            let orderDetails = JSON.parse(localStorage.getItem("orderDetails"));
-            
-            if (orderDetails) {
-                document.getElementById("customer-name").textContent = orderDetails.name;
-                document.getElementById("customer-email").textContent = orderDetails.email;
-                document.getElementById("order-total").textContent = "$" + orderDetails.totalAmount;
-                document.getElementById("shipping-address").textContent = orderDetails.address;
-            }
-        });
-    </script>
+   <!-- Script for conversion tracking -->
+   <script type="text/javascript">
+       alert("This worked! Impact payload received. Order ID: " + orderId);
+
+       ire('trackConversion', 54048, {
+           orderId: orderId,
+           customerEmail: "B87A2BE9B52070D84D0F5A373FFB49C3440B2295",
+           customerStatus: "New",
+           currencyCode: "USD",
+           items: [
+               {
+                   subTotal: 28.00,
+                   category: "Shoes",
+                   sku: "sku-392386",
+                   quantity: 2,
+                   name: "Long Shoes"
+               }
+           ]
+       },
+       {
+           verifySiteDefinitionMatch: true
+       });
+   </script>
+</body>
+</html>
+
+<body>
+       <!--Second UTT from program 31538-->
+   <script type="text/javascript"> ire('identify', {customerid: '' /*INSERT CUSTOMER ID*/, customeremail: '' /*INSERT SHA1 HASHED CUSTOMER EMAIL*/}); </script>
+
+       <div class="checkout-buttons">
+           <a href="index.html" class="button">Continue Shopping</a>
+           <a href="store.html" class="button">Go to Store</a>
+       </div>
+   </div>
+
+
+   <!-- <script>
+       document.addEventListener("DOMContentLoaded", function() {
+           // Retrieve order details from localStorage
+           let orderDetails = JSON.parse(localStorage.getItem("orderDetails"));
+          
+           if (orderDetails) {
+               document.getElementById("customer-name").textContent = orderDetails.name;
+               document.getElementById("customer-email").textContent = orderDetails.email;
+               document.getElementById("order-total").textContent = "$" + orderDetails.totalAmount;
+               document.getElementById("shipping-address").textContent = orderDetails.address;
+           }
+       });
+   </script> -->
+
 </body>
 </html>

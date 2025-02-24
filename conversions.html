@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You!</title>
+    <script>
+        // Capture the irclickid from URL parameters
+        function getQueryParam(param) {
+            let urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        let irclickid = getQueryParam("irclickid");
+        if (irclickid) {
+            // Store in a cookie or send to GTM
+            document.cookie = "irclickid=" + irclickid + "; path=/";
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'conversion',
+                'irclickid': irclickid
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Thank You for Your Purchase!</h1>
+    <p>Your transaction was successful.</p>
+    <p>Tracking ID: <span id="tracking-id">Loading...</span></p>
+
+    <script>
+        if (irclickid) {
+            document.getElementById("tracking-id").innerText = irclickid;
+        } else {
+            document.getElementById("tracking-id").innerText = "Not Available";
+        }
+    </script>
+</body>
+</html>
