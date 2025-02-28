@@ -48,9 +48,18 @@
     <!--Second UTT from program 31538-->
 	<script> ire('identify', {customerid: '' /*INSERT CUSTOMER ID*/, customeremail: '' /*INSERT SHA1 HASHED CUSTOMER EMAIL*/}); </script>
 
+    <script>
+        dataLayer = [];
+      </script>
+      
     <h1>Thank You for Your Purchase!</h1>
     <p>Your transaction was successful.</p>
     <p>Tracking ID: <span id="tracking-id">Loading...</span></p>
+    
+<a href="#" onclick="dataLayer.push({
+    'customerId': 'nc0983255659',
+    'customerEmail': '871876c13fecaf15b4d51df0b2b187dc7c1d8bb7'
+   });">Customer Details</a>
 
     <script>
         if (irclickid) {
