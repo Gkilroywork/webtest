@@ -91,6 +91,13 @@
        }
 
        let orderId = generateOrderId();
+
+       window.dataLayer = window.dataLayer || [];
+       window.dataLayer.push({
+         'event': 'orderGenerated',
+         'transaction_id': orderId
+  });
+
        document.addEventListener("DOMContentLoaded", function() {
            document.getElementById("order-id").innerText = orderId;
        });
