@@ -35,27 +35,27 @@
 
    <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Generate the order ID
+        function getQueryParam(param) {
+            let urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        let clickId = getQueryParam('clickid');
         function generateOrderId() {
             return "ORD-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
         }
 
         let orderId = generateOrderId();
-
-        // Set the Order ID in the table
         document.getElementById("order-id").innerText = orderId;
+        var programId = "32163";
 
-        // Retrieve the program ID (for example: '32163')
-        var programId = "32163";  // This would be a static value or dynamically set from your tracking call.
-
-        // Push program ID to the dataLayer for Google Tag Manager (optional, for tracking purposes)
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             'event': 'conversion',
-            'programId': programId
+            'programId': programId,
+            'clickId': clickId || 'N/A'
         });
 
-        // Impact Conversion Tracking
         ire('trackConversion', programId, {
             orderId: orderId,
             customerEmail: "B87A2BE9B52070D84D0F5A373FFB49C3440B2295",
@@ -81,13 +81,12 @@
             ]
         }, { verifySiteDefinitionMatch: true });
 
-        alert("Impact payload received. Order ID: " + orderId);
+        alert("Impact payload received. Order ID: " + orderId + " | Click ID: " + (clickId || "N/A"));
     });
    </script>
 </head>
 
 <body>
-
    <!-- Google Tag Manager (noscript) -->
    <noscript>
        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M6NJ4M2P"
@@ -115,6 +114,5 @@
        <a href="index.html" class="button">Continue Shopping</a>
        <a href="store.html" class="button">Go to Store</a>
    </div>
-
 </body>
 </html>
