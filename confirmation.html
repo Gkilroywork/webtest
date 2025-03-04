@@ -40,22 +40,10 @@
         return urlParams.get(param);
     }
 
-    // Function to capture the clickid from URL
+    // Function to capture the clickid from the URL
     function captureClickId() {
         var clickid = getQueryParam('clickid'); // Extract the "clickid" parameter from URL
         return clickid;
-    }
-
-    // Function to check the Impact clickid in network request
-    function getImpactClickIdFromNetwork() {
-        let clickid = captureClickId();
-        if (clickid) {
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                'event': 'conversion',
-                'clickid': clickid
-            });
-        }
     }
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -69,43 +57,47 @@
         // Set the Order ID in the table
         document.getElementById("order-id").innerText = orderId;
 
-        // Check and capture the clickid from the URL or network request
-        getImpactClickIdFromNetwork();
+        // Capture the clickid from the URL (if it exists)
+        var clickid = captureClickId();
+        
+        if (clickid) {
+            // If the clickid exists, push it to the dataLayer
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'conversion',
+                'clickid': clickid
+            });
 
-        // Push order data to the dataLayer
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-            'event': 'orderGenerated',
-            'transaction_id': orderId
-        });
+            // Impact Conversion Tracking
+            ire('trackConversion', 54289, {
+                orderId: orderId,
+                customerEmail: "B87A2BE9B52070D84D0F5A373FFB49C3440B2295",
+                customerStatus: "New",
+                currencyCode: "USD",
+                orderPromoCode: "newshoeswhodis",
+                orderDiscount: 15.00,
+                items: [
+                    {
+                        subTotal: 28.00,
+                        category: "Shoes",
+                        sku: "sku-392386",
+                        quantity: 2,
+                        name: "Long Shoes"
+                    },
+                    {
+                        subTotal: 99.00,
+                        category: "Shoes",
+                        sku: "sku-85634",
+                        quantity: 3,
+                        name: "Strong Shoes"
+                    }
+                ]
+            }, { verifySiteDefinitionMatch: true });
 
-        // Impact Conversion Tracking
-        ire('trackConversion', 54289, {
-            orderId: orderId,
-            customerEmail: "B87A2BE9B52070D84D0F5A373FFB49C3440B2295",
-            customerStatus: "New",
-            currencyCode: "USD",
-            orderPromoCode: "newshoeswhodis",
-            orderDiscount: 15.00,
-            items: [
-                {
-                    subTotal: 28.00,
-                    category: "Shoes",
-                    sku: "sku-392386",
-                    quantity: 2,
-                    name: "Long Shoes"
-                },
-                {
-                    subTotal: 99.00,
-                    category: "Shoes",
-                    sku: "sku-85634",
-                    quantity: 3,
-                    name: "Strong Shoes"
-                }
-            ]
-        }, { verifySiteDefinitionMatch: true });
-
-        alert("Impact payload received. Order ID: " + orderId);
+            alert("Impact payload received. Order ID: " + orderId);
+        } else {
+            console.warn("No clickid found in the URL");
+        }
     });
    </script>
 </head>
@@ -119,9 +111,9 @@
    </noscript>
    <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Impact Identify Function (Optional) -->
+   <!-- Impact Identify Function (Optional) -->
     <script>
-        var clickid = captureClickId(); // Capture the clickid from the URL or network
+        var clickid = captureClickId(); // Capture the clickid from the URL
         if (clickid) {
             ire('identify', {
                 customerid: '' /* INSERT CUSTOMER ID */,
