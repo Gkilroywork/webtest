@@ -41,16 +41,18 @@
     
     let irclickid = getQueryParam("irclickid");
     if (irclickid) {
-        // Store it in cookies or localStorage
+        // Store it in cookies or localStorage (if allowed)
         document.cookie = "irclickid=" + irclickid + "; path=/"; // Store in cookie
         window.localStorage.setItem('irclickid', irclickid); // Store in localStorage
         
-        // Push it to GTM
+        // Push it to GTM immediately
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             'event': 'conversion',
             'irclickid': irclickid
         });
+    } else {
+        console.log("irclickid not found in URL.");
     }
     </script>
     
@@ -95,16 +97,20 @@
 		// Generate the order ID
 		let orderId = generateOrderId();
 
-		// Get the irclickid from the cookies
+		// Get the irclickid from the cookies or localStorage (in case it's not in the URL)
 		function getIrClickId() {
 			const cookieValue = document.cookie.split('; ').find(row => row.startsWith('irclickid='));
-			return cookieValue ? cookieValue.split('=')[1] : null;  // Return the value or null if not found
+			if (cookieValue) {
+				return cookieValue.split('=')[1];
+			} else {
+				return window.localStorage.getItem('irclickid');
+			}
 		}
 
 		const irclickid = getIrClickId(); // Capture the irclickid
 
-		// Set the generated order ID to the HTML element
-		document.getElementById("order-id").innerText = orderId; // Display the order ID in the table
+		// Update the Order ID in the table
+		document.getElementById("order-id").innerText = orderId; // Display the generated order ID
 
 		// Push the conversion event and customer data to dataLayer
 		window.dataLayer = window.dataLayer || [];
