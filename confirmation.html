@@ -85,42 +85,78 @@
        <tr><td><strong>Total Amount:</strong></td><td>$250.00</td></tr>
    </table>
 
-   <script>
-       document.addEventListener("DOMContentLoaded", function() {
-           // Generate Order ID
-           function generateOrderId() {
-               return "ORD-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
-           }
-           let orderId = generateOrderId();
-           document.getElementById("order-id").innerText = orderId;
+   <script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function() {
+		// Generate Order ID
+		function generateOrderId() {
+			return "ORD-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
+		}
 
-           // Push Order ID to Data Layer
-           window.dataLayer = window.dataLayer || [];
-           window.dataLayer.push({
-               'event': 'orderGenerated',
-               'transaction_id': orderId
-           });
+		// Generate the order ID
+		let orderId = generateOrderId();
 
-           // Impact Conversion Tracking
-           ire('trackConversion', 54289, {
-               orderId: orderId,
-               customerEmail: "B87A2BE9B52070D84D0F5A373FFB49C3440B2295",
-               customerStatus: "New",
-               currencyCode: "USD",
-               items: [
-                   {
-                       subTotal: 28.00,
-                       category: "Shoes",
-                       sku: "sku-392386",
-                       quantity: 2,
-                       name: "Long Shoes"
-                   }
-               ]
-           }, { verifySiteDefinitionMatch: true });
+		// Push the conversion event and customer data to dataLayer
+		window.dataLayer = window.dataLayer || [];
+		window.dataLayer.push({
+			'event': 'conversion_tracking',
+			'orderId': orderId,  // Use the random order ID
+			'customProfileId': "TestUUID1GJK",
+			'customerId': "1123413",
+			'customerEmail': "B87A2BE9B52070D84D0F5A373FFB49C3440B2295",
+			'customerStatus': "New",
+			'currencyCode': "USD",
+			'orderPromoCode': "newshoeswhodis",
+			'orderDiscount': 15.00,
+			'items': [
+				{
+					'subTotal': 28.00,
+					'category': "Shoes",
+					'sku': "sku-392386",
+					'quantity': 2,
+					'name': "Long Shoes"
+				},
+				{
+					'subTotal': 99.00,
+					'category': "Shoes",
+					'sku': "sku-85634",
+					'quantity': 3,
+					'name': "Strong Shoes"
+				}
+			]
+		});
 
-           alert("This worked! Impact payload received. Order ID: " + orderId);
-       });
-   </script>
+		// Impact Conversion Tracking
+		ire('trackConversion', 54289, {
+			orderId: orderId,  // Use the random order ID
+			customerEmail: "B87A2BE9B52070D84D0F5A373FFB49C3440B2295",
+			customerStatus: "New",
+			currencyCode: "USD",
+			orderPromoCode: "newshoeswhodis",
+			orderDiscount: 15.00,
+			items: [
+				{
+					subTotal: 28.00,
+					category: "Shoes",
+					sku: "sku-392386",
+					quantity: 2,
+					name: "Long Shoes"
+				},
+				{
+					subTotal: 99.00,
+					category: "Shoes",
+					sku: "sku-85634",
+					quantity: 3,
+					name: "Strong Shoes"
+				}
+			]
+		}, { verifySiteDefinitionMatch: true });
+
+		// Optional: Log order ID for debugging
+		console.log("Generated Order ID: " + orderId);
+		alert("Impact payload received. Order ID: " + orderId);
+	});
+</script>
+
 
    <div class="checkout-buttons">
        <a href="index.html" class="button">Continue Shopping</a>

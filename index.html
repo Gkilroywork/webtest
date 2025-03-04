@@ -83,48 +83,81 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!--Second UTT from program 31538-->
 <script> ire('identify', {customerid: '' /*INSERT CUSTOMER ID*/, customeremail: '' /*INSERT SHA1 HASHED CUSTOMER EMAIL*/}); </script>
-	<script type="text/javascript">
-		ire('trackConversion', 54289, {
-		  orderId: "1340",
-		  customProfileId: "TestUUID1GJK",
-		  customerId: "1123413",
-		  customerEmail: "B87A2BE9B52070D84D0F5A373FFB49C3440B2295",
-		  customerStatus: "New",
-		  currencyCode: "USD",
-		  orderPromoCode: "newshoeswhodis",
-		  orderDiscount: 15.00,
-		  items: [
-			{
-			  subTotal: 28.00,
-			  category: "Shoes",
-			  sku: "sku-392386",
-			  quantity: 2,
-			  name: "Long Shoes"
-			},
-			{
-			  subTotal: 99.00,
-			  category: "Shoes",
-			  sku: "sku-85634",
-			  quantity: 3,
-			  name: "Strong Shoes"
-			}
-		  ]
-		},
-		{
-		  verifySiteDefinitionMatch: true
-		});
-	  </script>
 
-<script>
-	window.dataLayer.push({
-	  'event': 'customer_login',
-	  'customerId': 'nc0983255659',
-	  'customerEmail': '871876c13fecaf15b4d51df0b2b187dc7c1d8bb7'
+<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function() {
+		// Generate Order ID
+		function generateOrderId() {
+			return "ORD-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
+		}
+
+		// Generate the order ID
+		let orderId = generateOrderId();
+
+		// Push the conversion event and customer data to dataLayer
+		window.dataLayer = window.dataLayer || [];
+		window.dataLayer.push({
+			'event': 'conversion_tracking',
+			'orderId': orderId,  // Use the random order ID
+			'customProfileId': "TestUUID1GJK",
+			'customerId': "1123413",
+			'customerEmail': "B87A2BE9B52070D84D0F5A373FFB49C3440B2295",
+			'customerStatus': "New",
+			'currencyCode': "USD",
+			'orderPromoCode': "newshoeswhodis",
+			'orderDiscount': 15.00,
+			'items': [
+				{
+					'subTotal': 28.00,
+					'category': "Shoes",
+					'sku': "sku-392386",
+					'quantity': 2,
+					'name': "Long Shoes"
+				},
+				{
+					'subTotal': 99.00,
+					'category': "Shoes",
+					'sku': "sku-85634",
+					'quantity': 3,
+					'name': "Strong Shoes"
+				}
+			]
+		});
+
+		// Impact Conversion Tracking
+		ire('trackConversion', 54289, {
+			orderId: orderId,  // Use the random order ID
+			customerEmail: "B87A2BE9B52070D84D0F5A373FFB49C3440B2295",
+			customerStatus: "New",
+			currencyCode: "USD",
+			orderPromoCode: "newshoeswhodis",
+			orderDiscount: 15.00,
+			items: [
+				{
+					subTotal: 28.00,
+					category: "Shoes",
+					sku: "sku-392386",
+					quantity: 2,
+					name: "Long Shoes"
+				},
+				{
+					subTotal: 99.00,
+					category: "Shoes",
+					sku: "sku-85634",
+					quantity: 3,
+					name: "Strong Shoes"
+				}
+			]
+		}, { verifySiteDefinitionMatch: true });
+
+		// Optional: Log order ID for debugging
+		console.log("Generated Order ID: " + orderId);
+		alert("Impact payload received. Order ID: " + orderId);
 	});
-	console.log("Customer login event fired");
-  </script>
+</script>
+
+
   
-	
 	
 	<!--header-->
 	<div class="container">
