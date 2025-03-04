@@ -79,7 +79,7 @@
 
    <h3>Order Details:</h3>
    <table>
-       <tr><td><strong>Order ID:</strong></td><td id="order-id": orderId></td></tr>
+       <tr><td><strong>Order ID:</strong></td><td id="order-id">Loading...</td></tr>
        <tr><td><strong>Customer Name:</strong></td><td>John Doe</td></tr>
        <tr><td><strong>Email:</strong></td><td>johndoe@example.com</td></tr>
        <tr><td><strong>Total Amount:</strong></td><td>$250.00</td></tr>
@@ -102,6 +102,9 @@
 		}
 
 		const irclickid = getIrClickId(); // Capture the irclickid
+
+		// Set the generated order ID to the HTML element
+		document.getElementById("order-id").innerText = orderId; // Display the order ID in the table
 
 		// Push the conversion event and customer data to dataLayer
 		window.dataLayer = window.dataLayer || [];
@@ -168,8 +171,6 @@
 	});
 </script>
 
-
-
    <div class="checkout-buttons">
        <a href="index.html" class="button">Continue Shopping</a>
        <a href="store.html" class="button">Go to Store</a>
@@ -177,4 +178,3 @@
 
 </body>
 </html>
-
