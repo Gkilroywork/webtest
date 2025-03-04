@@ -39,24 +39,85 @@
         let urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(param);
     }
-    
-    let irclickid = getQueryParam("irclickid");  // Get the 'irclickid' from URL
-    if (irclickid) {
-        // Store it in cookies or localStorage (if allowed)
-        document.cookie = "irclickid=" + irclickid + "; path=/"; // Store in cookie
-        window.localStorage.setItem('irclickid', irclickid); // Store in localStorage
+
+    // Function to check the Impact clickid in network request
+    function getImpactClickIdFromNetwork() {
+        // Fetch the clickid from Impact's network request after the page loads
+        // This assumes that Impact's network request is made and clickid is available
+        let clickid = null;
         
-        // Push it to GTM immediately
+        // Use a network interceptor (like XMLHttpRequest or fetch) to grab clickid
+        const originalFetch = window.fetch;
+        window.fetch = function(url, ...args) {
+            originalFetch(url, ...args).then(response => {
+                // Look for the clickid in the request URL
+                if (url.includes('utm_source') && url.includes('clickid')) {
+                    const urlParams = new URLSearchParams(url.split('?')[1]);
+                    clickid = urlParams.get('clickid');
+                    if (clickid) {
+                        // Store it in the dataLayer
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({
+                            'event': 'conversion',
+                            'clickid': clickid
+                        });
+                    }
+                }
+            });
+            return originalFetch(url, ...args);
+        };
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Generate the order ID
+        function generateOrderId() {
+            return "ORD-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
+        }
+
+        let orderId = generateOrderId();
+
+        // Set the Order ID in the table
+        document.getElementById("order-id").innerText = orderId;
+
+        // Check and capture the clickid from the Impact network request
+        getImpactClickIdFromNetwork();
+
+        // Push order data to the dataLayer
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
-            'event': 'conversion',
-            'irclickid': irclickid
+            'event': 'orderGenerated',
+            'transaction_id': orderId
         });
-    } else {
-        console.log("irclickid not found in URL.");
-    }
-    </script>
 
+        // Impact Conversion Tracking
+        ire('trackConversion', 54289, {
+            orderId: orderId,
+            customerEmail: "B87A2BE9B52070D84D0F5A373FFB49C3440B2295",
+            customerStatus: "New",
+            currencyCode: "USD",
+            orderPromoCode: "newshoeswhodis",
+            orderDiscount: 15.00,
+            items: [
+                {
+                    subTotal: 28.00,
+                    category: "Shoes",
+                    sku: "sku-392386",
+                    quantity: 2,
+                    name: "Long Shoes"
+                },
+                {
+                    subTotal: 99.00,
+                    category: "Shoes",
+                    sku: "sku-85634",
+                    quantity: 3,
+                    name: "Strong Shoes"
+                }
+            ]
+        }, { verifySiteDefinitionMatch: true });
+
+        alert("Impact payload received. Order ID: " + orderId);
+    });
+    </script>
 </head>
 
 <body>
@@ -68,15 +129,6 @@
    </noscript>
    <!-- End Google Tag Manager (noscript) -->
 
-   <!-- Impact Identify Function - Properly placed inside the body -->
-   <script type="text/javascript">
-       ire('identify', {
-           customerid: '123456', // Replace with actual customer ID
-           customeremail: 'B87A2BE9B52070D84D0F5A373FFB49C3440B2295' // SHA1 hashed email
-       });
-   </script>
-   <!-- End Impact Identify -->
-
    <h1>Thank You for Your Purchase!</h1>
    <p>Your transaction was successful.</p>
 
@@ -87,96 +139,6 @@
        <tr><td><strong>Email:</strong></td><td>johndoe@example.com</td></tr>
        <tr><td><strong>Total Amount:</strong></td><td>$250.00</td></tr>
    </table>
-
-   <script type="text/javascript">
-	document.addEventListener("DOMContentLoaded", function() {
-		// Generate Order ID
-		function generateOrderId() {
-			return "ORD-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
-		}
-
-		// Generate the order ID
-		let orderId = generateOrderId();
-
-		// Get the irclickid from the cookies or localStorage (in case it's not in the URL)
-		function getIrClickId() {
-			const cookieValue = document.cookie.split('; ').find(row => row.startsWith('irclickid='));
-			if (cookieValue) {
-				return cookieValue.split('=')[1];
-			} else {
-				return window.localStorage.getItem('irclickid');
-			}
-		}
-
-		const irclickid = getIrClickId(); // Capture the irclickid
-
-		// Update the Order ID in the table
-		document.getElementById("order-id").innerText = orderId; // Display the generated order ID
-
-		// Push the conversion event and customer data to dataLayer
-		window.dataLayer = window.dataLayer || [];
-		window.dataLayer.push({
-			'event': 'conversion_tracking',
-			'orderId': orderId,  // Use the random order ID
-			'irclickid': irclickid,  // Push the irclickid
-			'customProfileId': "TestUUID1GJK",
-			'customerId': "1123413",
-			'customerEmail': "B87A2BE9B52070D84D0F5A373FFB49C3440B2295",
-			'customerStatus': "New",
-			'currencyCode': "USD",
-			'orderPromoCode': "newshoeswhodis",
-			'orderDiscount': 15.00,
-			'items': [
-				{
-					'subTotal': 28.00,
-					'category': "Shoes",
-					'sku': "sku-392386",
-					'quantity': 2,
-					'name': "Long Shoes"
-				},
-				{
-					'subTotal': 99.00,
-					'category': "Shoes",
-					'sku': "sku-85634",
-					'quantity': 3,
-					'name': "Strong Shoes"
-				}
-			]
-		});
-
-		// Impact Conversion Tracking
-		ire('trackConversion', 54289, {
-			orderId: orderId,  // Use the random order ID
-			irclickid: irclickid,  // Pass irclickid in the conversion payload
-			customerEmail: "B87A2BE9B52070D84D0F5A373FFB49C3440B2295",
-			customerStatus: "New",
-			currencyCode: "USD",
-			orderPromoCode: "newshoeswhodis",
-			orderDiscount: 15.00,
-			items: [
-				{
-					subTotal: 28.00,
-					category: "Shoes",
-					sku: "sku-392386",
-					quantity: 2,
-					name: "Long Shoes"
-				},
-				{
-					subTotal: 99.00,
-					category: "Shoes",
-					sku: "sku-85634",
-					quantity: 3,
-					name: "Strong Shoes"
-				}
-			]
-		}, { verifySiteDefinitionMatch: true });
-
-		// Optional: Log irclickid for debugging
-		console.log("Generated Order ID: " + orderId);
-		console.log("irclickid: " + irclickid);
-		alert("Impact payload received. Order ID: " + orderId + ". irclickid: " + irclickid);
-	});
-</script>
 
    <div class="checkout-buttons">
        <a href="index.html" class="button">Continue Shopping</a>
