@@ -15,17 +15,7 @@
    <!-- End Google Tag Manager -->
 
    <!-- Impact UTT (Universal Tracking Tag) -->
-   <script type="text/javascript">
-       (function(a,b,c,d,e,f,g){
-           e['ire_o']=c;
-           e[c]=e[c]||function(){(e[c].a=e[c].a||[]).push(arguments)};
-           f=d.createElement(b);
-           g=d.getElementsByTagName(b)[0];
-           f.async=1;
-           f.src=a;
-           g.parentNode.insertBefore(f,g);
-       })('https://utt.impactcdn.com/A6017967-9b32-44cf-a4c7-1b76f8f0bfce65535.js','script','ire',document,window);
-   </script>
+   <script type="text/javascript"> (function(a,b,c,d,e,f,g){e['ire_o']=c;e[c]=e[c]||function(){(e[c].a=e[c].a||[]).push(arguments)};f=d.createElement(b);g=d.getElementsByTagName(b)[0];f.async=1;f.src=a;g.parentNode.insertBefore(f,g);})('https://utt.impactcdn.com/A6017967-9b32-44cf-a4c7-1b76f8f0bfce65535.js','script','ire',document,window); </script>
    <!-- End Impact UTT -->
 
    <title>Order Confirmation - Shop Shoes</title>
@@ -111,17 +101,9 @@
    </noscript>
    <!-- End Google Tag Manager (noscript) -->
 
-   <!-- Impact Identify Function (Optional) -->
-    <script>
-        var clickid = captureClickId(); // Capture the clickid from the URL
-        if (clickid) {
-            ire('identify', {
-                customerid: '' /* INSERT CUSTOMER ID */,
-                customeremail: '' /* INSERT SHA1 HASHED CUSTOMER EMAIL */,
-                clickid: clickid // This is the captured clickid from URL
-            });
-        }
-    </script>
+    
+ <!-- Impact Identify Function-->
+  <script> ire('identify', {customerid: '' /*INSERT CUSTOMER ID*/, customeremail: '' /*INSERT SHA1 HASHED CUSTOMER EMAIL*/}); </script>
 
    <h1>Thank You for Your Purchase!</h1>
    <p>Your transaction was successful.</p>
