@@ -80,16 +80,10 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Impact Identify Function (with irclickid) -->
-    <script>
-        if (irclickid) {
-            ire('identify', {
-                customerid: '' /*INSERT CUSTOMER ID*/,
-                customeremail: '' /*INSERT SHA1 HASHED CUSTOMER EMAIL*/,
-                irclickid: irclickid // This is the irclickid captured from the URL
-            });
-        }
-    </script>
+   <!-- Impact Identify Function -->
+   <script> 
+	ire('identify', {customerid: '' /*INSERT CUSTOMER ID*/, customeremail: '' /*INSERT SHA1 HASHED CUSTOMER EMAIL*/}); 
+ </script>
 
     <!--header-->
     <div class="container">
