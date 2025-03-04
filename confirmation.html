@@ -34,12 +34,13 @@
    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 
    <script>
+    // Function to get URL parameters
     function getQueryParam(param) {
         let urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(param);
     }
     
-    let irclickid = getQueryParam("irclickid");
+    let irclickid = getQueryParam("irclickid");  // Get the 'irclickid' from URL
     if (irclickid) {
         // Store it in cookies or localStorage (if allowed)
         document.cookie = "irclickid=" + irclickid + "; path=/"; // Store in cookie
@@ -55,7 +56,7 @@
         console.log("irclickid not found in URL.");
     }
     </script>
-    
+
 </head>
 
 <body>
