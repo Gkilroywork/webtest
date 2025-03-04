@@ -32,6 +32,28 @@
    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
    <script src="js/jquery.min.js"></script>
    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+   <script>
+    function getQueryParam(param) {
+        let urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+    
+    let irclickid = getQueryParam("irclickid");
+    if (irclickid) {
+        // Store it in cookies or localStorage
+        document.cookie = "irclickid=" + irclickid + "; path=/"; // Store in cookie
+        window.localStorage.setItem('irclickid', irclickid); // Store in localStorage
+        
+        // Push it to GTM
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'conversion',
+            'irclickid': irclickid
+        });
+    }
+    </script>
+    
 </head>
 
 <body>
