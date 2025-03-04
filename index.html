@@ -39,11 +39,9 @@
             g.parentNode.insertBefore(f, g);
         })('https://utt.impactcdn.com/A6017967-9b32-44cf-a4c7-1b76f8f0bfce65535.js', 'script', 'ire', document, window);
     </script>
-    
+
+    <!-- Capture the "irclickid" from the URL -->
     <script>
-        dataLayer = [];
-        
-        // Capture the "irclickid" from the URL
         var urlParams = new URLSearchParams(window.location.search);
         var irclickid = urlParams.get('irclickid'); // Extract the "irclickid" parameter
 
@@ -84,11 +82,13 @@
 
     <!-- Impact Identify Function (with irclickid) -->
     <script>
-        ire('identify', {
-            customerid: '' /*INSERT CUSTOMER ID*/,
-            customeremail: '' /*INSERT SHA1 HASHED CUSTOMER EMAIL*/,
-            irclickid: irclickid // This is the irclickid captured from the URL
-        });
+        if (irclickid) {
+            ire('identify', {
+                customerid: '' /*INSERT CUSTOMER ID*/,
+                customeremail: '' /*INSERT SHA1 HASHED CUSTOMER EMAIL*/,
+                irclickid: irclickid // This is the irclickid captured from the URL
+            });
+        }
     </script>
 
     <!--header-->
