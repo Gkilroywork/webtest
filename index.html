@@ -45,14 +45,16 @@
         var urlParams = new URLSearchParams(window.location.search);
         var irclickid = urlParams.get('irclickid'); // Extract the "irclickid" parameter
 
-        // If the "irclickid" is found, pass it to the Impact identify function
-        if (irclickid) {
+        // extract and store campaignid 
+		const campaignId = getCampaignId();
+		
+		// // pass it to the Impact identify function
             ire('identify', {
                 customerid: '', // INSERT CUSTOMER ID
                 customeremail: '', // INSERT SHA1 HASHED CUSTOMER EMAIL
-                irclickid: irclickid // Pass the irclickid value here
+                campaginId: campaignId || ''
             });
-        }
+        
     </script>
 
     <title>This is actually a different website than the one you have been seeing!</title>
