@@ -33,12 +33,14 @@
   <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 
   <script>
-   document.addEventListener("DOMContentLoaded", function () {
-       function getQueryParam(param) {
-           let urlParams = new URLSearchParams(window.location.search);
-           return urlParams.get(param);
-       }
-
+			// Capture and Store irclickid value
+			function getQueryParam(irclickid) {
+				const urlParam = new URLSearchParams(window.location.search);
+				return urlParam.get(irclickid);
+			}
+			const irclickid = getQueryParam('irclickid');
+   </script>         
+<script>
        function generateOrderId() {
            return `ORD-${Date.now()}-${Math.floor(1000 + Math.random() * 9000)}`;
        }
@@ -59,22 +61,24 @@
        }
        const campaignId = getCampaignId();
 
-       // Store and Retrieve irclickid
-       function getIrClickId() {
-           let irclickid = getQueryParam('irclickid');
-           if (irclickid) {
-               document.cookie = `irclickid=${irclickid}; path=/`; // Store in cookies
-           } else {
-               const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
-                   const [key, value] = cookie.split('=');
-                   acc[key] = value;
-                   return acc;
-               }, {});
-               irclickid = cookies['irclickid'] || '';
-           }
-           return irclickid;
-       }
-       const extractedIrClickId = getIrClickId();
+   		// Retrieve stored irclickid value or empty string
+		function retrieveIrClickid(irclickid) {
+			const name = irclickid + '=';
+			const decodedCookie = decodeURIComponent(document.cookie);
+			const cookieArray = decodedCookie.split(';');
+
+			for (var i = 0; i < cookieArray.length; i++) {
+				const cookie = cookieArray[i].trim();
+				if (cookie.indexOf(name) === 0) {
+					return cookie.substring(name.length);
+				}
+			}
+
+			return ''; // if no irclickid exists
+
+		}
+		//Pass irclickid in payload
+		const extractedIrClickId = retrieveIrClickid('irclickid');
 
        // Fire DataLayer Conversion Event
        window.dataLayer = window.dataLayer || [];
@@ -92,7 +96,7 @@
            campaignId: campaignId || ''
        });
 
-       // Fire Impact Conversion Tracker
+       // Fire Impact Conversion Payload
        ire('trackConversion', programId, {
            orderId: orderId,
            clickid: extractedIrClickId,
@@ -125,7 +129,6 @@
        console.log('CampaignId:', campaignId);
 
        alert("Impact payload received. Order ID: " + orderId + " | Click ID: " + (extractedIrClickId || "N/A") + " | Campaign ID: " + (campaignId || "N/A"));
-   });
   </script>
 </head>
 
