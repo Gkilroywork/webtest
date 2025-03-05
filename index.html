@@ -1,164 +1,168 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VMBJ77FBQG"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-VMBJ77FBQG');
-    </script>
-    <!-- Google Tag Manager -->
-    <script>
-        (function(w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start': new Date().getTime(),
-                event: 'gtm.js'
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-M6NJ4M2P');
-    </script>
-    <!-- End Google Tag Manager -->
+   <!-- Google tag (gtag.js) -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VMBJ77FBQG"></script>
+   <script>
+       window.dataLayer = window.dataLayer || [];
+       function gtag() { dataLayer.push(arguments); }
+       gtag('js', new Date());
+       gtag('config', 'G-VMBJ77FBQG');
+   </script>
+   <!-- Google Tag Manager -->
+   <script>
+       (function(w, d, s, l, i) {
+           w[l] = w[l] || [];
+           w[l].push({
+               'gtm.start': new Date().getTime(),
+               event: 'gtm.js'
+           });
+           var f = d.getElementsByTagName(s)[0],
+               j = d.createElement(s),
+               dl = l != 'dataLayer' ? '&l=' + l : '';
+           j.async = true;
+           j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+           f.parentNode.insertBefore(j, f);
+       })(window, document, 'script', 'dataLayer', 'GTM-M6NJ4M2P');
+   </script>
+   <!-- End Google Tag Manager -->
 
-    <!-- Impact UTT (Universal Tracking Tag) -->
-    <script type="text/javascript">
-        (function(a, b, c, d, e, f, g) {
-            e['ire_o'] = c;
-            e[c] = e[c] || function() { (e[c].a = e[c].a || []).push(arguments); };
-            f = d.createElement(b);
-            g = d.getElementsByTagName(b)[0];
-            f.async = 1;
-            f.src = a;
-            g.parentNode.insertBefore(f, g);
-        })('https://utt.impactcdn.com/A6017967-9b32-44cf-a4c7-1b76f8f0bfce65535.js', 'script', 'ire', document, window);
-    </script>
 
-    <!-- Capture the "irclickid" from the URL -->
-    <script>
-        var urlParams = new URLSearchParams(window.location.search);
-        var irclickid = urlParams.get('irclickid'); // Extract the "irclickid" parameter
-
-        // extract and store campaignid 
-		const campaignId = getCampaignId();
-		
-		// // pass it to the Impact identify function
-            ire('identify', {
-                customerid: '', // INSERT CUSTOMER ID
-                customeremail: '', // INSERT SHA1 HASHED CUSTOMER EMAIL
-                campaginId: campaignId || ''
-            });
-        
-    </script>
-
-    <title>This is actually a different website than the one you have been seeing!</title>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery.min.js"></script>
-    <!-- Custom Theme files -->
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Shop underwear Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free web designs for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
-    <script type="application/x-javascript">
-        addEventListener("load", function() {
-            setTimeout(hideURLbar, 0);
-        }, false);
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
-</head>
-<body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M6NJ4M2P" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-   <!-- Impact Identify Function -->
-   <script> 
-      ire('identify', {customerid: '' /*INSERT CUSTOMER ID*/, customeremail: '' /*INSERT SHA1 HASHED CUSTOMER EMAIL*/}); 
+   <!-- Impact UTT (Universal Tracking Tag) -->
+   <script type="text/javascript">
+       (function(a, b, c, d, e, f, g) {
+           e['ire_o'] = c;
+           e[c] = e[c] || function() { (e[c].a = e[c].a || []).push(arguments); };
+           f = d.createElement(b);
+           g = d.getElementsByTagName(b)[0];
+           f.async = 1;
+           f.src = a;
+           g.parentNode.insertBefore(f, g);
+       })('https://utt.impactcdn.com/A6017967-9b32-44cf-a4c7-1b76f8f0bfce65535.js', 'script', 'ire', document, window);
    </script>
 
-    <!--header-->
-    <div class="container">
-        <div class="header">
-            <div class="header-top">
-                <div class="logo">
-                    <a href="index.html"><img src="images/logo.png" alt=""></a>
-                </div>
-                <div class="header-top-on">
-                    <ul class="icon1 sub-icon1">
-                        <li><div class="cart1">
-                            <a href="#" class="cart-in"> </a>
-                        </div>
-                        <ul class="sub-icon1 list">
-                            <h3>Recently added items(2)</h3>
-                            <div class="shopping_cart">
-                                <div class="cart_box">
-                                    <div class="message">
-                                        <div class="alert-close"> </div>
-                                        <div class="list_img"><img src="images/10.jpg" class="img-responsive" alt=""></div>
-                                        <div class="list_desc"><h4><a href="#">velit esse molestie</a></h4>1 x<span class="actual">$12.00</span></div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                                <div class="cart_box1">
-                                    <div class="message1">
-                                        <div class="alert-close1"> </div>
-                                        <div class="list_img"><img src="images/4.jpg" class="img-responsive" alt=""></div>
-                                        <div class="list_desc"><h4><a href="#">velit esse molestie</a></h4>1 x<span class="actual">$12.00</span></div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="total">
-                                <div class="total_left">CartSubtotal : </div>
-                                <div class="total_right">$250.00</div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="login_buttons">
-                                <div class="check_button"><a href="checkout.html">Check out</a></div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </ul>Cart : (empty)</li>    
-                    </ul>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="header-bottom">
-                <div class="top-nav">
-                    <span class="menu"> </span>
-                    <ul>
-                        <li class="active"><a href="index.html" data-hover="Home">Home</a></li>
-                        <li><a href="store.html" data-hover="Store">Store</a></li>
-                        <li><a href="product.html" data-hover="Product">Product</a></li>
-                        <li><a href="checkout.html" data-hover="Checkout">Checkout</a></li>
-                        <li><a href="confirmation.html" data-hover="Confirmation">Confirmation</a></li>    
-                    </ul>
-                    <script>
-                        $("span.menu").click(function() {
-                            $(".top-nav ul").slideToggle(500, function() {});
-                        });
-                    </script>
-                </div>
-                <div class="search">
-                    <form>
-                        <input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
-                        <input type="submit" value="">
-                    </form>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-    </div>
+
+   <!-- Capture the "irclickid" from the URL -->
+   <script>
+       var urlParams = new URLSearchParams(window.location.search);
+       var irclickid = urlParams.get('irclickid'); // Extract the "irclickid" parameter
+
+
+       // If the "irclickid" is found, pass it to the Impact identify function
+       if (irclickid) {
+           ire('identify', {
+               customerid: '', // INSERT CUSTOMER ID
+               customeremail: '', // INSERT SHA1 HASHED CUSTOMER EMAIL
+               irclickid: irclickid // Pass the irclickid value here
+           });
+       }
+   </script>
+
+
+   <title>This is actually a different website than the one you have been seeing!</title>
+   <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   <script src="js/jquery.min.js"></script>
+   <!-- Custom Theme files -->
+   <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <meta name="keywords" content="Shop underwear Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free web designs for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+   <script type="application/x-javascript">
+       addEventListener("load", function() {
+           setTimeout(hideURLbar, 0);
+       }, false);
+       function hideURLbar() {
+           window.scrollTo(0, 1);
+       }
+   </script>
+</head>
+<body>
+   <!-- Google Tag Manager (noscript) -->
+   <noscript>
+       <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M6NJ4M2P" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+   </noscript>
+   <!-- End Google Tag Manager (noscript) -->
+
+
+  <!-- Impact Identify Function -->
+  <script>
+     ire('identify', {customerid: '' /*INSERT CUSTOMER ID*/, customeremail: '' /*INSERT SHA1 HASHED CUSTOMER EMAIL*/});
+  </script>
+
+
+   <!--header-->
+   <div class="container">
+       <div class="header">
+           <div class="header-top">
+               <div class="logo">
+                   <a href="index.html"><img src="images/logo.png" alt=""></a>
+               </div>
+               <div class="header-top-on">
+                   <ul class="icon1 sub-icon1">
+                       <li><div class="cart1">
+                           <a href="#" class="cart-in"> </a>
+                       </div>
+                       <ul class="sub-icon1 list">
+                           <h3>Recently added items(2)</h3>
+                           <div class="shopping_cart">
+                               <div class="cart_box">
+                                   <div class="message">
+                                       <div class="alert-close"> </div>
+                                       <div class="list_img"><img src="images/10.jpg" class="img-responsive" alt=""></div>
+                                       <div class="list_desc"><h4><a href="#">velit esse molestie</a></h4>1 x<span class="actual">$12.00</span></div>
+                                       <div class="clearfix"></div>
+                                   </div>
+                               </div>
+                               <div class="cart_box1">
+                                   <div class="message1">
+                                       <div class="alert-close1"> </div>
+                                       <div class="list_img"><img src="images/4.jpg" class="img-responsive" alt=""></div>
+                                       <div class="list_desc"><h4><a href="#">velit esse molestie</a></h4>1 x<span class="actual">$12.00</span></div>
+                                       <div class="clearfix"></div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="total">
+                               <div class="total_left">CartSubtotal : </div>
+                               <div class="total_right">$250.00</div>
+                               <div class="clearfix"> </div>
+                           </div>
+                           <div class="login_buttons">
+                               <div class="check_button"><a href="checkout.html">Check out</a></div>
+                               <div class="clearfix"></div>
+                           </div>
+                           <div class="clearfix"></div>
+                       </ul>Cart : (empty)</li>   
+                   </ul>
+               </div>
+               <div class="clearfix"> </div>
+           </div>
+           <div class="header-bottom">
+               <div class="top-nav">
+                   <span class="menu"> </span>
+                   <ul>
+                       <li class="active"><a href="index.html" data-hover="Home">Home</a></li>
+                       <li><a href="store.html" data-hover="Store">Store</a></li>
+                       <li><a href="product.html" data-hover="Product">Product</a></li>
+                       <li><a href="checkout.html" data-hover="Checkout">Checkout</a></li>
+                       <li><a href="confirmation.html" data-hover="Confirmation">Confirmation</a></li>   
+                   </ul>
+                   <script>
+                       $("span.menu").click(function() {
+                           $(".top-nav ul").slideToggle(500, function() {});
+                       });
+                   </script>
+               </div>
+               <div class="search">
+                   <form>
+                       <input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
+                       <input type="submit" value="">
+                   </form>
+               </div>
+               <div class="clearfix"> </div>
+           </div>
+       </div>
+   </div>
 </body>
 </html>
