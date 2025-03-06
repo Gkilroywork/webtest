@@ -94,14 +94,14 @@
 		//Pass irclickid in payload
 		const extractedIrClickId = retrieveIrClickid('irclickid');
 
-      // Fire DataLayer Conversion Event
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-          'event': 'conversion',
-          'programId': programId,
-          'clickId': irclickid || 'N/A',
-          'campaignId': campaignId || ''
-      });
+    //   // Fire DataLayer Conversion Event
+    //   window.dataLayer = window.dataLayer || [];
+    //   window.dataLayer.push({
+    //       'event': 'conversion',
+    //       'programId': programId,
+    //       'clickId': irclickid || 'N/A',
+    //       'campaignId': campaignId || ''
+    //   });
 
 
       // Fire Impact Conversion Tracker
@@ -151,8 +151,7 @@
   <!-- End Google Tag Manager (noscript) -->
 
   <!-- Impact Identify Function -->
-  <script>
-    ire('identify', {customerid: '' /*INSERT CUSTOMER ID*/, customeremail: '' /*INSERT SHA1 HASHED CUSTOMER EMAIL*/});</script>
+  <script> ire('identify', {customerid: '' /*INSERT CUSTOMER ID*/, customeremail: '' /*INSERT SHA1 HASHED CUSTOMER EMAIL*/});</script>
 
   <h1>Thank You for Your Purchase!</h1>
   <p>Your transaction was successful.</p>
