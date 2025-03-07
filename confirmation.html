@@ -138,7 +138,7 @@
       console.log('CampaignId:', campaignId);
       console.log('Stored irclickid:', document.cookie); // Debugging stored cookies
 
-      alert("Impact payload received. Order ID: " + orderId + " | Click ID: " + (irclickid || "N/A") + " | Campaign ID: " + (campaignId || "N/A"));
+      alert("Impact payload received. Order ID: " + orderId + " | Click ID: " + (extractedIrClickId || "N/A") + " | Campaign ID: " + (campaignId || "N/A"));
   });
   </script>
 </head>
