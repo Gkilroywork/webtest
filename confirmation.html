@@ -29,6 +29,8 @@
     dataLayer.push({
        'transactionId': 'orderId',
        'transactionAffiliation': 'Vance Fashion',
+       'clickId': clickId,
+       'customer.Id': customerId,
        'transactionCoupon': '0% Discount', 
        'transactionTotal': 400.28,
        'transactionTax': 1.29,
@@ -101,15 +103,6 @@
 		const extractedIrClickId = retrieveIrClickid('irclickid');
 
         console.log("Extracted irclickid:", extractedIrClickId);
-    //   // Fire DataLayer Conversion Event
-    //   window.dataLayer = window.dataLayer || [];
-    //   window.dataLayer.push({
-    //       'event': 'conversion',
-    //       'programId': programId,
-    //       'clickId': irclickid || 'N/A',
-    //       'campaignId': campaignId || ''
-    //   });
-
 
       // Fire Impact Conversion Tracker
       ire('trackConversion', 54289, {
