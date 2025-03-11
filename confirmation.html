@@ -27,7 +27,7 @@
 <script>
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
-       'transactionId': orderId,
+       'transactionId': 'orderId',
        'transactionAffiliation': 'Vance Fashion',
        'click.Id': clickid,
        'customer.Id': 'customerId',
@@ -137,6 +137,7 @@
       console.log('ClickId:', extractedIrClickId);
       console.log('CampaignId:', campaignId);
       console.log('Stored irclickid:', document.cookie); // Debugging stored cookies
+      console.log('Transaction Products:', transactionProducts);
 
       alert("Impact payload received. Order ID: " + orderId + " | Click ID: " + (extractedIrClickId || "N/A") + " | Campaign ID: " + (campaignId || "N/A"));
   });
