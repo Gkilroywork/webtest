@@ -1,175 +1,161 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
-<!---- Data Layer ---->
-   <script>
-   window.dataLayer = window.dataLayer || [];
-   </script>
+    <!-- Data Layer -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+    </script>
 
- <!-- Google Tag Manager -->
- <script>
-     (function(w,d,s,l,i){
-         w[l]=w[l]||[]; w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-         var f=d.getElementsByTagName(s)[0],
-         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-         j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-         f.parentNode.insertBefore(j,f);
-     })(window,document,'script','dataLayer','GTM-M6NJ4M2P');
- </script>
- <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w,d,s,l,i){
+            w[l]=w[l]||[]; w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+            var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+            j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+            f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-M6NJ4M2P');
+    </script>
+    <!-- End Google Tag Manager -->
 
- <!-- Impact UTT -->
-<script type="text/javascript"> (function(a,b,c,d,e,f,g){e['ire_o']=c;e[c]=e[c]||function(){(e[c].a=e[c].a||[]).push(arguments)};f=d.createElement(b);g=d.getElementsByTagName(b)[0];f.async=1;f.src=a;g.parentNode.insertBefore(f,g);})('https://utt.impactcdn.com/A6017967-9b32-44cf-a4c7-1b76f8f0bfce65535.js','script','ire',document,window); </script>
- <!-- End Impact UTT -->
+    <!-- Impact UTT -->
+    <script type="text/javascript">
+        (function(a,b,c,d,e,f,g){
+            e['ire_o']=c;e[c]=e[c]||function(){(e[c].a=e[c].a||[]).push(arguments)};
+            f=d.createElement(b);g=d.getElementsByTagName(b)[0];f.async=1;f.src=a;g.parentNode.insertBefore(f,g);
+        })('https://utt.impactcdn.com/A6017967-9b32-44cf-a4c7-1b76f8f0bfce65535.js','script','ire',document,window);
+    </script>
+    <!-- End Impact UTT -->
 
-<!--datalayer push--->
-<script>
-   window.dataLayer = window.dataLayer || [];
-   var clickid = 'UNKNOWN_CLICK_ID'; // Default value if not defined
-   var transactionProducts = [
-       {
-           'sku': 'sku-3992386',
-           'name': 'Long shoes',
-           'category': 'Apparel',
-           'price': 11.99,
-           'quantity': 1
-       },
+    <title>Order Confirmation - Shop Shoes</title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="js/jquery.min.js"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 
-       {
-
-           'sku': 'sku-859694',
-           'name': 'Strong Shoes',
-           'category': 'Shoes',
-           'price': 129.00,
-           'quantity': 50
-       }
-   ];
-   dataLayer.push({
-      'transactionId': 'orderId',
-      'transactionAffiliation': 'Vance Fashion',
-      'click.Id': extractedClickId,
-      'customer.Id': 'customerId',
-      'transactionCoupon': '0% Discount',
-      'transactionTotal': 6463.28,
-      'transactionTax': 1.29,
-      'transactionShipping': 0,
-      'transactionProducts': transactionProducts
-   });
-</script>
-
- <title>Order Confirmation - Shop Shoes</title>
- <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
- <script src="js/jquery.min.js"></script>
- <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-
- <script>
- document.addEventListener("DOMContentLoaded", function () {
-     function getQueryParam(param) {
-         let urlParams = new URLSearchParams(window.location.search);
-         return urlParams.get(param);
-     }
-
-     function generateOrderId() {
-         return `ORD-${Date.now()}-${Math.floor(1000 + Math.random() * 9000)}`;
-     }
-
-     let orderId = generateOrderId();
-     document.getElementById("order-id").innerText = orderId;
-     var programId = "54289";
-
-     // Store and Retrieve Campaign ID
-     function getCampaignId() {
-         let campaignId = getQueryParam('campaignId') || getQueryParam('campaignid');
-         if (campaignId) {
-             localStorage.setItem('campaignId', campaignId);
-
-         } else {
-
-             campaignId = localStorage.getItem('campaignId') || '';
-
-         }
-         return campaignId;
-     }
-     const campaignId = getCampaignId();
-
-   // Retrieve stored irclickid value or empty string
-// Retrieve stored IR_32163 value or return an empty string
-function retrieveClickId() {
-    const name = "IR_32163=";
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const cookieArray = decodedCookie.split(';');
-
-    for (let i = 0; i < cookieArray.length; i++) {
-        let cookie = cookieArray[i].trim();
-        if (cookie.startsWith(name)) {
-            let irValue = cookie.substring(name.length); // Get the IR_32163 value
-            let parts = irValue.split('|'); // Split by '|'
-
-            if (parts.length >= 4) {
-                return parts[3]; // Click ID is the 4th part
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function getQueryParam(param) {
+                let urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
             }
-        }
-    }
-    return 'UNKNOWN_CLICK_ID'; // If IR_32163 is not found
-}
 
-// Extract the Click ID from IR_32163
-const extractedClickId = retrieveClickId();
-console.log("Extracted Click ID:", extractedClickId);
+            function generateOrderId() {
+                return `ORD-${Date.now()}-${Math.floor(1000 + Math.random() * 9000)}`;
+            }
 
+            let orderId = generateOrderId();
+            document.getElementById("order-id").innerText = orderId;
+            var programId = "54289";
 
-     // Fire Impact Conversion Tracker
-     ire('trackConversion', 54289, {
-         orderId: orderId,
-         irclickid: extractedClickId,
-         customerId: '1123413',
-         customerEmail: 'B87A2BE9B52070D84D0F5A373FFB49C3440B2295',
-         orderPromoCode: 'newshoeswhodis',
-         customerStatus: "New",
-         currencyCode: "USD",
-         items: transactionProducts
-     });
+            function getCampaignId() {
+                let campaignId = getQueryParam('campaignId') || getQueryParam('campaignid');
+                if (campaignId) {
+                    localStorage.setItem('campaignId', campaignId);
+                } else {
+                    campaignId = localStorage.getItem('campaignId') || '';
+                }
+                return campaignId;
+            }
+            const campaignId = getCampaignId();
 
-     // Debugging Logs
-     console.log('OrderId:', orderId);
-     console.log('ClickId:', extractedClickId);
-     console.log('CampaignId:', campaignId);
-     console.log('Stored irclickid:', document.cookie); // Debugging stored cookies
-     console.log('Transaction Products:', transactionProducts);
+            function retrieveClickId() {
+                const name = "IR_32163=";
+                const decodedCookie = decodeURIComponent(document.cookie);
+                const cookieArray = decodedCookie.split(';');
 
-     alert("Impact payload received. Order ID: " + orderId + " | Click ID: " + (extractedClickId || "N/A") + " | Campaign ID: " + (campaignId || "N/A"));
- });
+                for (let i = 0; i < cookieArray.length; i++) {
+                    let cookie = cookieArray[i].trim();
+                    if (cookie.startsWith(name)) {
+                        let irValue = cookie.substring(name.length);
+                        let parts = irValue.split('|');
 
- </script>
+                        if (parts.length >= 4) {
+                            return parts[3];
+                        }
+                    }
+                }
+                return 'UNKNOWN_CLICK_ID';
+            }
+
+            const extractedClickId = retrieveClickId();
+            console.log("Extracted Click ID:", extractedClickId);
+
+            var transactionProducts = [
+                {
+                    'sku': 'sku-3992386',
+                    'name': 'Long shoes',
+                    'category': 'Apparel',
+                    'price': 11.99,
+                    'quantity': 1
+                },
+                {
+                    'sku': 'sku-859694',
+                    'name': 'Strong Shoes',
+                    'category': 'Shoes',
+                    'price': 129.00,
+                    'quantity': 50
+                }
+            ];
+
+            dataLayer.push({
+                'transactionId': orderId,
+                'transactionAffiliation': 'Vance Fashion',
+                'click.Id': extractedClickId,
+                'customer.Id': 'customerId',
+                'transactionCoupon': '0% Discount',
+                'transactionTotal': 6463.28,
+                'transactionTax': 1.29,
+                'transactionShipping': 0,
+                'transactionProducts': transactionProducts
+            });
+
+            ire('trackConversion', 54289, {
+                orderId: orderId,
+                irclickid: extractedClickId,
+                customerId: '1123413',
+                customerEmail: 'B87A2BE9B52070D84D0F5A373FFB49C3440B2295',
+                orderPromoCode: 'newshoeswhodis',
+                customerStatus: "New",
+                currencyCode: "USD",
+                items: transactionProducts
+            });
+
+            console.log('OrderId:', orderId);
+            console.log('ClickId:', extractedClickId);
+            console.log('CampaignId:', campaignId);
+            console.log('Stored irclickid:', document.cookie);
+            console.log('Transaction Products:', transactionProducts);
+
+            alert("Impact payload received. Order ID: " + orderId + " | Click ID: " + (extractedClickId || "N/A") + " | Campaign ID: " + (campaignId || "N/A"));
+        });
+    </script>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M6NJ4M2P"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
- <!-- Google Tag Manager (noscript) -->
- <noscript>
-     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M6NJ4M2P"
-     height="0" width="0" style="display:none;visibility:hidden"></iframe>
- </noscript>
- <!-- End Google Tag Manager (noscript) -->
+    <!-- Impact Identify Function -->
+    <script>
+        ire('identify', {customerid: '' /*INSERT CUSTOMER ID*/, customeremail: '' /*INSERT SHA1 HASHED CUSTOMER EMAIL*/});
+    </script>
 
- <!-- Impact Identify Function -->
- <script> ire('identify', {customerid: '' /*INSERT CUSTOMER ID*/, customeremail: '' /*INSERT SHA1 HASHED CUSTOMER EMAIL*/});</script>
+    <h1>Thank You for Your Purchase!</h1>
+    <p>Your transaction was successful.</p>
+    <h3>Order Details:</h3>
+    <table>
+        <tr><td><strong>Order ID:</strong></td><td id="order-id">Loading...</td></tr>
+        <tr><td><strong>Customer Name:</strong></td><td>John Doe</td></tr>
+        <tr><td><strong>Email:</strong></td><td>johndoe@example.com</td></tr>
+        <tr><td><strong>Total Amount:</strong></td><td>$250.00</td></tr>
+    </table>
 
- <h1>Thank You for Your Purchase!</h1>
- <p>Your transaction was successful.</p>
- <h3>Order Details:</h3>
- <table>
-     <tr><td><strong>Order ID:</strong></td><td id="order-id">Loading...</td></tr>
-
-     <tr><td><strong>Customer Name:</strong></td><td>John Doe</td></tr>
-
-     <tr><td><strong>Email:</strong></td><td>johndoe@example.com</td></tr>
-
-     <tr><td><strong>Total Amount:</strong></td><td>$250.00</td></tr>
- </table>
-
- <div class="checkout-buttons">
-     <a href="index.html" class="button">Continue Shopping</a>
-     <a href="store.html" class="button">Go to Store</a>
- </div>
+    <div class="checkout-buttons">
+        <a href="index.html" class="button">Continue Shopping</a>
+        <a href="store.html" class="button">Go to Store</a>
+    </div>
 </body>
 </html>
