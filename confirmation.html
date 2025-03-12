@@ -101,17 +101,21 @@ function retrieveIrClickid() {
 
     for (let i = 0; i < cookieArray.length; i++) {
         let cookie = cookieArray[i].trim();
-        if (cookie.indexOf(name) === 0) {
-            return cookie.substring(name.length);
+        if (cookie.startsWith(name)) {
+            let irValue = cookie.substring(name.length); // Get the IR_32163 value
+            let parts = irValue.split('|'); // Split by '|'
+
+            if (parts.length >= 4) {
+                return parts[3]; // Click ID is the 4th part
+            }
         }
     }
-    return ''; // If IR_32163 does not exist
+    return 'UNKNOWN_CLICK_ID'; // If IR_32163 is not found
 }
 
-// Extract IR_32163 value
-const extractedIrClickId = retrieveIrClickid();
-clickid = extractedIrClickId || 'UNKNOWN_CLICK_ID'; // Ensure clickid is assigned
-console.log("Extracted IR_32163:", extractedIrClickId);
+// Extract the Click ID from IR_32163
+const extractedClickId = retrieveClickId();
+console.log("Extracted Click ID:", extractedClickId);
 
 
      // Fire Impact Conversion Tracker
