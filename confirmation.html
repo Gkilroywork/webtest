@@ -93,24 +93,26 @@
      const campaignId = getCampaignId();
 
    // Retrieve stored irclickid value or empty string
-    function retrieveIrClickid(irclickid) {
-           const name = irclickid + '=';
-           const decodedCookie = decodeURIComponent(document.cookie);
-           const cookieArray = decodedCookie.split(';');
-           for (var i = 0; i < cookieArray.length; i++) {
-               const cookie = cookieArray[i].trim();
-               if (cookie.indexOf(name) === 0) {
-                   return cookie.substring(name.length);
-               }
-           }
+// Retrieve stored IR_32163 value or return an empty string
+function retrieveIrClickid() {
+    const name = "IR_32163=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookieArray = decodedCookie.split(';');
 
-           return ''; // if no irclickid exists
-       }
+    for (let i = 0; i < cookieArray.length; i++) {
+        let cookie = cookieArray[i].trim();
+        if (cookie.indexOf(name) === 0) {
+            return cookie.substring(name.length);
+        }
+    }
+    return ''; // If IR_32163 does not exist
+}
 
-       //Pass irclickid in payload
-       const extractedIrClickId = retrieveIrClickid('irclickid');
-       clickid = extractedIrClickId || 'UNKNOWN_CLICK_ID'; // Ensure clickid is assigned
-       console.log("Extracted irclickid:", extractedIrClickId);
+// Extract IR_32163 value
+const extractedIrClickId = retrieveIrClickid();
+clickid = extractedIrClickId || 'UNKNOWN_CLICK_ID'; // Ensure clickid is assigned
+console.log("Extracted IR_32163:", extractedIrClickId);
+
 
      // Fire Impact Conversion Tracker
      ire('trackConversion', 54289, {
@@ -133,7 +135,7 @@
 
      alert("Impact payload received. Order ID: " + orderId + " | Click ID: " + (extractedIrClickId || "N/A") + " | Campaign ID: " + (campaignId || "N/A"));
  });
- 
+
  </script>
 </head>
 <body>
