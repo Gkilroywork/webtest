@@ -2,12 +2,10 @@
 <html>
 <head>
 
-
 <!---- Data Layer ---->
    <script>
    window.dataLayer = window.dataLayer || [];
    </script>
-
 
  <!-- Google Tag Manager -->
  <script>
@@ -21,11 +19,9 @@
  </script>
  <!-- End Google Tag Manager -->
 
-
  <!-- Impact UTT -->
 <script type="text/javascript"> (function(a,b,c,d,e,f,g){e['ire_o']=c;e[c]=e[c]||function(){(e[c].a=e[c].a||[]).push(arguments)};f=d.createElement(b);g=d.getElementsByTagName(b)[0];f.async=1;f.src=a;g.parentNode.insertBefore(f,g);})('https://utt.impactcdn.com/A6017967-9b32-44cf-a4c7-1b76f8f0bfce65535.js','script','ire',document,window); </script>
  <!-- End Impact UTT -->
-
 
 <!--datalayer push--->
 <script>
@@ -65,90 +61,82 @@
  <script src="js/jquery.min.js"></script>
  <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 
-
  <script>
- document.addEventListener("DOMContentLoaded", function () {
-     function getQueryParam(param) {
-         let urlParams = new URLSearchParams(window.location.search);
-         return urlParams.get(param);
-     }
+document.addEventListener("DOMContentLoaded", function () {
+    function getQueryParam(param) {
+        let urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
 
+    function generateOrderId() {
+        return `ORD-${Date.now()}-${Math.floor(1000 + Math.random() * 9000)}`;
+    }
 
-     function generateOrderId() {
-         return `ORD-${Date.now()}-${Math.floor(1000 + Math.random() * 9000)}`;
-     }
+    let orderId = generateOrderId();
+    document.getElementById("order-id").innerText = orderId;
+    var programId = "54289";
 
+    // Retrieve stored irclickid from cookies
+    function retrieveIrClickid() {
+        const name = 'irclickid=';
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookieArray = decodedCookie.split(';');
 
-     let orderId = generateOrderId();
-     document.getElementById("order-id").innerText = orderId;
-     var programId = "54289";
+        for (var i = 0; i < cookieArray.length; i++) {
+            const cookie = cookieArray[i].trim();
+            if (cookie.indexOf(name) === 0) {
+                return cookie.substring(name.length);
+            }
+        }
+        return ''; // Return empty if irclickid doesn't exist in cookies
+    }
 
+    let extractedIrClickId = retrieveIrClickid();
+    let clickid = extractedIrClickId || 'UNKNOWN_CLICK_ID';
+    console.log("Stored irclickid:", extractedIrClickId);
 
-     // Store and Retrieve Campaign ID
-     function getCampaignId() {
-         let campaignId = getQueryParam('campaignId') || getQueryParam('campaignid');
-         if (campaignId) {
-             localStorage.setItem('campaignId', campaignId);
-         } else {
-             campaignId = localStorage.getItem('campaignId') || '';
-         }
-         return campaignId;
-     }
-     const campaignId = getCampaignId();
+    // Listen for network requests to capture clickid dynamically
+    if (window.performance) {
+        let observer = new PerformanceObserver((list) => {
+            list.getEntries().forEach((entry) => {
+                if (entry.name.includes("impact.com") && entry.name.includes("32163")) {
+                    let requestUrl = new URL(entry.name);
+                    let params = new URLSearchParams(requestUrl.search);
+                    let networkClickId = params.get("clickid");
 
+                    if (networkClickId) {
+                        clickid = networkClickId;
+                        console.log("Extracted Click ID from Network:", networkClickId);
+                        alert("Click ID Captured: " + networkClickId);
+                    }
+                }
+            });
+        });
 
-   // Retrieve stored irclickid value or empty string
-    function retrieveIrClickid(irclickid) {
-           const name = irclickid + '=';
-           const decodedCookie = decodeURIComponent(document.cookie);
-           const cookieArray = decodedCookie.split(';');
+        observer.observe({ type: "resource", buffered: true });
+    }
 
+    // Fire Impact Conversion Tracker
+    ire('trackConversion', programId, {
+        orderId: orderId,
+        irclickid: clickid, // Use the dynamically extracted clickid
+        customerId: '1123413',
+        customerEmail: 'B87A2BE9B52070D84D0F5A373FFB49C3440B2295',
+        orderPromoCode: 'newshoeswhodis',
+        customerStatus: "New",
+        currencyCode: "USD",
+        items: transactionProducts
+    });
 
-           for (var i = 0; i < cookieArray.length; i++) {
-               const cookie = cookieArray[i].trim();
-               if (cookie.indexOf(name) === 0) {
-                   return cookie.substring(name.length);
-               }
-           }
+    // Debugging Logs
+    console.log('OrderId:', orderId);
+    console.log('Final ClickId Used:', clickid);
+    console.log('Transaction Products:', transactionProducts);
+alert("Impact payload received. Order ID: " + orderId + " | Click ID: " + (extractedIrClickId || "N/A") + " | Campaign ID: " + (campaignId || "N/A"));
 
-
-           return ''; // if no irclickid exists
-
-
-       }
-       //Pass irclickid in payload
-       const extractedIrClickId = retrieveIrClickid('irclickid');
-       clickid = extractedIrClickId || 'UNKNOWN_CLICK_ID'; // Ensure clickid is assigned
-
-       console.log("Extracted irclickid:", extractedIrClickId);
-
-
-     // Fire Impact Conversion Tracker
-     ire('trackConversion', 54289, {
-         orderId: orderId,
-         irclickid: extractedIrClickId,
-         customerId: '1123413',
-         customerEmail: 'B87A2BE9B52070D84D0F5A373FFB49C3440B2295',
-         orderPromoCode: 'newshoeswhodis',
-         customerStatus: "New",
-         currencyCode: "USD",
-         items: transactionProducts
-     });
-
-
-     // Debugging Logs
-     console.log('OrderId:', orderId);
-     console.log('ClickId:', extractedIrClickId);
-     console.log('CampaignId:', campaignId);
-     console.log('Stored irclickid:', document.cookie); // Debugging stored cookies
-     console.log('Transaction Products:', transactionProducts);
-
-
-     alert("Impact payload received. Order ID: " + orderId + " | Click ID: " + (extractedIrClickId || "N/A") + " | Campaign ID: " + (campaignId || "N/A"));
- });
- </script>
+});
+</script>
 </head>
-
 
 <body>
  <!-- Google Tag Manager (noscript) -->
@@ -158,14 +146,11 @@
  </noscript>
  <!-- End Google Tag Manager (noscript) -->
 
-
  <!-- Impact Identify Function -->
  <script> ire('identify', {customerid: '' /*INSERT CUSTOMER ID*/, customeremail: '' /*INSERT SHA1 HASHED CUSTOMER EMAIL*/});</script>
 
-
  <h1>Thank You for Your Purchase!</h1>
  <p>Your transaction was successful.</p>
-
 
  <h3>Order Details:</h3>
  <table>
@@ -175,10 +160,10 @@
      <tr><td><strong>Total Amount:</strong></td><td>$250.00</td></tr>
  </table>
 
-
  <div class="checkout-buttons">
      <a href="index.html" class="button">Continue Shopping</a>
      <a href="store.html" class="button">Go to Store</a>
  </div>
 </body>
 </html>
+
