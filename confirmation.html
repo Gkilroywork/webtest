@@ -121,7 +121,7 @@ console.log("Extracted Click ID:", extractedClickId);
      // Fire Impact Conversion Tracker
      ire('trackConversion', 54289, {
          orderId: orderId,
-         irclickid: extractedIrClickId,
+         irclickid: extractedClickId,
          customerId: '1123413',
          customerEmail: 'B87A2BE9B52070D84D0F5A373FFB49C3440B2295',
          orderPromoCode: 'newshoeswhodis',
@@ -132,12 +132,12 @@ console.log("Extracted Click ID:", extractedClickId);
 
      // Debugging Logs
      console.log('OrderId:', orderId);
-     console.log('ClickId:', extractedIrClickId);
+     console.log('ClickId:', extractedClickId);
      console.log('CampaignId:', campaignId);
      console.log('Stored irclickid:', document.cookie); // Debugging stored cookies
      console.log('Transaction Products:', transactionProducts);
 
-     alert("Impact payload received. Order ID: " + orderId + " | Click ID: " + (extractedIrClickId || "N/A") + " | Campaign ID: " + (campaignId || "N/A"));
+     alert("Impact payload received. Order ID: " + orderId + " | Click ID: " + (extractedClickId || "N/A") + " | Campaign ID: " + (campaignId || "N/A"));
  });
 
  </script>
