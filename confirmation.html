@@ -25,37 +25,38 @@
 
 <!--datalayer push--->
 <script>
-   window.dataLayer = window.dataLayer || [];
-   var clickid = 'UNKNOWN_CLICK_ID'; // Default value if not defined
-   var transactionProducts = [
-       {
-           'sku': 'sku-3992386',
-           'name': 'Long shoes',
-           'category': 'Apparel',
-           'price': 11.99,
-           'quantity': 1
-       },
-       {
-           'sku': 'sku-859694',
-           'name': 'Strong Shoes',
-           'category': 'Shoes',
-           'price': 129.00,
-           'quantity': 3
-       }
-   ];
-   dataLayer.push({
-      'transactionId': 'orderId',
-      'transactionAffiliation': 'Vance Fashion',
-      'click.Id': clickid,
-      'customer.Id': 'customerId',
-      'transactionCoupon': '0% Discount',
-      'transactionTotal': 400.28,
-      'transactionTax': 1.29,
-      'transactionShipping': 0,
-      'transactionProducts': transactionProducts
-   });
+  window.dataLayer = window.dataLayer || [];
+  var clickid = 'UNKNOWN_CLICK_ID'; // Default value if not defined
+  var transactionProducts = [
+      {
+          'sku': 'sku-3992386',
+          'name': 'Long shoes',
+          'category': 'Apparel',
+          'price': 11.99,
+          'quantity': 1
+      },
+      {
+          'sku': 'sku-859694',
+          'name': 'Strong Shoes',
+          'category': 'Shoes',
+          'price': 129.00,
+          'quantity': 50
+      }
+  ];
+  dataLayer.push({
+     'transactionId': 'orderId',
+     'transactionAffiliation': 'Vance Fashion',
+     'click.Id': clickid,
+     'customer.Id': 'customerId',
+     'transactionCoupon': '0% Discount',
+     'transactionTotal': 6463.28,
+     'transactionTax': 1.29,
+     'transactionShipping': 0,
+     'transactionProducts': transactionProducts
+  });
 </script>
-  
+
+
  <title>Order Confirmation - Shop Shoes</title>
  <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
  <script src="js/jquery.min.js"></script>
@@ -88,12 +89,11 @@
                     return cookie.substring(name.length);
                 }
             }
-            return ''; // Return empty if irclickid doesn't exist in cookies
+            return 'UNKNOWN_CLICK_ID'; // Default if irclickid doesn't exist
         }
     
-        let extractedIrClickId = retrieveIrClickid();
-        let clickid = extractedIrClickId || 'UNKNOWN_CLICK_ID';
-        console.log("Stored irclickid:", extractedIrClickId);
+        let clickid = retrieveIrClickid();
+        console.log("Stored irclickid:", clickid);
     
         // Listen for network requests to capture clickid dynamically
         if (window.performance) {
@@ -107,9 +107,6 @@
                         if (networkClickId) {
                             clickid = networkClickId;
                             console.log("Extracted Click ID from Network:", networkClickId);
-                            alert("Click ID Captured: " + networkClickId);
-                        } else {
-                            console.log("Click ID not found in URL, checking payload...");
                         }
                     }
                 });
@@ -121,7 +118,7 @@
         // Fire Impact Conversion Tracker
         ire('trackConversion', programId, {
             orderId: orderId,
-            irclickid: clickid, // Use the dynamically extracted clickid
+            irclickid: clickid,
             customerId: '1123413',
             customerEmail: 'B87A2BE9B52070D84D0F5A373FFB49C3440B2295',
             orderPromoCode: 'newshoeswhodis',
@@ -130,10 +127,11 @@
             items: transactionProducts
         });
     
-        // Debugging Logs
         console.log('OrderId:', orderId);
         console.log('Final ClickId Used:', clickid);
         console.log('Transaction Products:', transactionProducts);
+alert("Impact payload received. Order ID: " + orderId + " | Click ID: " + (extractedIrClickId || "N/A") + " | Campaign ID: " + (campaignId || "N/A"));
+
     });
     </script>
     
@@ -167,4 +165,5 @@
  </div>
 </body>
 </html>
+
 
